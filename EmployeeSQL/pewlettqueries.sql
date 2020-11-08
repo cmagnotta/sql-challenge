@@ -72,3 +72,27 @@ FROM employees
 GROUP BY last_name
 ORDER BY "repeat last names" DESC;
 
+--I ran into errors when trying to run the query to get people hired in 1986.
+--I realized that I had to change the data type for the hire_date.
+--I dropped the table employees.
+
+Drop table employees;
+
+--Then I created the table again.
+
+Create table employees (
+	emp_no INTEGER PRIMARY KEY NOT NULL,
+	title_id VARCHAR(6) NOT NULL,
+	birth_date VARCHAR(10) NOT NULL,
+	first_name VARCHAR NOT NULL,
+	last_name VARCHAR NOT NULL,
+	sex VARCHAR (1) NOT NULL,
+	hire_date DATE NOT NULL,
+	FOREIGN KEY (title_id)references titles (title_id)
+);
+
+--List first name, last name, and hire date for employees who were hired in 1986.
+ 
+SELECT employees.first_name, employees.last_name, employees.hire_date
+FROM employees
+WHERE employees.hire_date BETWEEN '1986-01-01' and '1986-12-31';
