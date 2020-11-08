@@ -41,3 +41,5 @@ Create table salaries (
 	salary int NOT NULL,
 	FOREIGN KEY (emp_no)references employees (emp_no)
 );
+
+
